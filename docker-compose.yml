@@ -1,0 +1,98 @@
+services:
+  # Rails Application
+  rails_app:
+    build:
+      context: ./rails_app
+      dockerfile: Dockerfile
+    user: "${WWWUSER}:${WWWGROUP}"
+    command: bundle exec rails s -b '0.0.0.0'
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - elasticsearch
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./rails_app:/app
+    networks:
+      - app_network
+
+  # Go Application
+  go_app:
+    build:
+      context: ./go_app
+      dockerfile: Dockerfile
+    user: "${WWWUSER}:${WWWGROUP}"
+    command: ["sh", "-c", "go build -o /go/go_app && /go/go_app"]
+    environment:
+      GOCACHE: "/go/.cache"
+      DATABASE_URL: mysql://root:password@mysql:3306/go_db
+      REDIS_URL: redis://redis:6379/0
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - elasticsearch
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./go_app/:/app
+    networks:
+      - app_network
+
+  # RabbitMQ for messaging
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app_network
+
+  # Elasticsearch for fuzzy search
+  elasticsearch:
+    image: elasticsearch:8.16.0
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    networks:
+      - app_network
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+  # Redis for caching
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"
+    networks:
+      - app_network
+
+  # MySQL for database
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: chat_app
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - app_network
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
+  elasticsearch_data:
+    driver: local

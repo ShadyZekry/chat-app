@@ -1,0 +1,14 @@
+Started GET "/" for 172.23.0.1 at 2024-11-16 09:10:49 +0000
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='ChatApp'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='ChatApp'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-8.0.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-8.0.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 28ms (Views: 8.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/icon.png" for 172.23.0.1 at 2024-11-16 09:10:50 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
