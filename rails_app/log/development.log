@@ -12,3 +12,169 @@ Started GET "/icon.png" for 172.23.0.1 at 2024-11-16 09:10:50 +0000
   
 ActionController::RoutingError (No route matches [GET] "/icon.png"):
   
+Started GET "/" for 172.23.0.1 at 2024-11-16 10:25:42 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='ChatApp'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-8.0.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-8.0.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 4.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/chat_applications/index" for 172.23.0.1 at 2024-11-16 10:25:44 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/chat_applications/index"):
+  
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 10:26:00 +0000
+Processing by Api::V1::ChatApplicationsController#index as HTML
+Completed 204 No Content in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.0ms)
+
+
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 10:26:15 +0000
+Processing by Api::V1::ChatApplicationsController#index as HTML
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 10:26:36 +0000
+Processing by Api::V1::ChatApplicationsController#index as HTML
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 10:26:41 +0000
+Processing by Api::V1::ChatApplicationsController#index as HTML
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 10:26:52 +0000
+Processing by Api::V1::ChatApplicationsController#index as */*
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 10:26:58 +0000
+Processing by Api::V1::ChatApplicationsController#index as */*
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/chat_applications/inde" for 172.23.0.1 at 2024-11-16 10:27:01 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/chat_applications/inde"):
+  
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 10:27:03 +0000
+Processing by Api::V1::ChatApplicationsController#index as */*
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE DATABASE `chat_app` DEFAULT CHARACTER SET `utf8mb4` /*application='ChatApp'*/[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE DATABASE `chat_app` DEFAULT CHARACTER SET `utf8mb4` /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[34mSELECT GET_LOCK('8049289647990392130', 0) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1 /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (10.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2024-11-16 11:49:24.260463', '2024-11-16 11:49:24.260467') /*application='ChatApp'*/[0m
+Migrating to CreateChatApplications (20241116102959)
+  [1m[35m (69.6ms)[0m  [1m[35mCREATE TABLE `chat_applications` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `token` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (9.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20241116102959') /*application='ChatApp'*/[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('8049289647990392130') /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+Started GET "/" for 172.23.0.1 at 2024-11-16 11:53:15 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-8.0.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-8.0.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | GC: 0.0ms)
+Completed 200 OK in 52ms (Views: 14.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/1/chat_applications/index" for 172.23.0.1 at 2024-11-16 11:53:44 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/api/1/chat_applications/index"):
+  
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 11:53:52 +0000
+Processing by Api::V1::ChatApplicationsController#index as HTML
+  [1m[36mChatApplication Load (2.2ms)[0m  [1m[34mSELECT `chat_applications`.* FROM `chat_applications` /*action='index',application='ChatApp',controller='chat_applications'*/[0m
+  ↳ app/controllers/api/v1/chat_applications_controller.rb:4:in `index'
+Completed 200 OK in 46ms (Views: 11.7ms | ActiveRecord: 7.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 11:53:55 +0000
+Processing by Api::V1::ChatApplicationsController#index as HTML
+  [1m[36mChatApplication Load (1.3ms)[0m  [1m[34mSELECT `chat_applications`.* FROM `chat_applications` /*action='index',application='ChatApp',controller='chat_applications'*/[0m
+  ↳ app/controllers/api/v1/chat_applications_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 11:54:05 +0000
+Processing by Api::V1::ChatApplicationsController#index as HTML
+  [1m[36mChatApplication Load (1.4ms)[0m  [1m[34mSELECT `chat_applications`.* FROM `chat_applications` /*action='index',application='ChatApp',controller='chat_applications'*/[0m
+  ↳ app/controllers/api/v1/chat_applications_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 11:54:45 +0000
+Processing by Api::V1::ChatApplicationsController#index as HTML
+  [1m[36mChatApplication Load (1.1ms)[0m  [1m[34mSELECT `chat_applications`.* FROM `chat_applications` /*action='index',application='ChatApp',controller='chat_applications'*/[0m
+  ↳ app/controllers/api/v1/chat_applications_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/chat_applications/index" for 172.23.0.1 at 2024-11-16 11:54:50 +0000
+Processing by Api::V1::ChatApplicationsController#index as HTML
+  [1m[36mChatApplication Load (1.1ms)[0m  [1m[34mSELECT `chat_applications`.* FROM `chat_applications` /*action='index',application='ChatApp',controller='chat_applications'*/[0m
+  ↳ app/controllers/api/v1/chat_applications_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.1ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for 172.23.0.1 at 2024-11-16 11:54:50 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[35mSQL (0.3ms)[0m  [1m[34mSELECT GET_LOCK('8049289647990392130', 0) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1 /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Update (9.4ms)[0m  [1m[33mUPDATE `ar_internal_metadata` SET `ar_internal_metadata`.`value` = 'development', `ar_internal_metadata`.`updated_at` = '2024-11-16 12:02:27.003723' WHERE `ar_internal_metadata`.`key` = 'environment' /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('8049289647990392130') /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[34mSELECT GET_LOCK('8049289647990392130', 0) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1 /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK('8049289647990392130') /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[35m (44.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `chat_applications` CASCADE /*application='ChatApp'*/[0m
+  [1m[35m (62.4ms)[0m  [1m[35mCREATE TABLE `chat_applications` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `token` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci /*application='ChatApp'*/[0m
+  [1m[35m (60.7ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[35m (9.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20241116102959) /*application='ChatApp'*/[0m
+  [1m[35m (75.7ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1 /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (11.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2024-11-16 12:04:05.599098', '2024-11-16 12:04:05.599103') /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1 /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1 /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (9.0ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '4860a2f92a4c5cdd35f4f6eac025d93767f3bdeb', '2024-11-16 12:04:05.618319', '2024-11-16 12:04:05.618323') /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[34mSELECT GET_LOCK('8049289647990392130', 0) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1 /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('8049289647990392130') /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[34mSELECT GET_LOCK('8049289647990392130', 0) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+Migrating to CreateChatApplications (20241116102959)
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE `applications` /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK('8049289647990392130') /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[34mSELECT GET_LOCK('8049289647990392130', 0) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+Migrating to CreateChatApplications (20241116102959)
+  [1m[35m (46.9ms)[0m  [1m[35mDROP TABLE `chat_applications` /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (12.3ms)[0m  [1m[31mDELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20241116102959' /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('8049289647990392130') /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[34mSELECT GET_LOCK('8049289647990392130', 0) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' ORDER BY `ar_internal_metadata`.`key` ASC LIMIT 1 /*application='ChatApp'*/[0m
+Migrating to CreateChatApplications (20241116102959)
+  [1m[35m (63.5ms)[0m  [1m[35mCREATE TABLE `applications` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `token` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (12.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20241116102959') /*application='ChatApp'*/[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('8049289647990392130') /*application='ChatApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC /*application='ChatApp'*/[0m
