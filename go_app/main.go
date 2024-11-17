@@ -8,34 +8,41 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
+type Chat struct {
+	Number int    `json:"number,omitempty"`
+	Name   string `json:"name,omitempty"`
+}
+
+type Message struct {
+	Number int    `json:"number,omitempty"`
+	Name   string `json:"name,omitempty"`
+}
+
+var chats []Chat
+
+func createChat(c echo.Context) error {
+	chat := new(Chat)
+	chat.Name = c.FormValue("name")
+	chat.Number = 5
+
+	chats = append(chats, *chat)
+	return c.JSON(http.StatusCreated, chats)
+}
+
 func main() {
+	echo := echo.New()
 
-	e := echo.New()
+	echo.Use(middleware.Logger())
+	echo.Use(middleware.Recover())
 
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
+	api := echo.Group("/api/v1")
 
-	e.GET("/", func(c echo.Context) error {
-		return c.HTML(http.StatusOK, "Hello, Docker! <3")
-	})
-
-	e.GET("/health", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, struct{ Status string }{Status: "OK"})
-	})
+	api.POST("/applications/:token/chats", createChat)
 
 	httpPort := os.Getenv("PORT")
 	if httpPort == "" {
 		httpPort = "8080"
 	}
 
-	e.Logger.Fatal(e.Start(":" + httpPort))
-}
-
-// Simple implementation of an integer minimum
-// Adapted from: https://gobyexample.com/testing-and-benchmarking
-func IntMin(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
+	echo.Logger.Fatal(echo.Start(":" + httpPort))
 }
