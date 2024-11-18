@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"errors"
 	"sync"
 
 	"github.com/redis/go-redis/v9"
@@ -29,22 +30,17 @@ func New() *RedisService {
 	return redisService
 }
 
-func Get(key string) string {
+func Get(key string) (string, error) {
 	r := New()
 	val, err := r.Client.Get(r.Context, key).Result()
-	if err != nil {
-		panic(err)
+	if err == redis.Nil {
+		return "", errors.New("key not found")
 	}
-	return val
-}
 
-func Set(key string, value string) string {
-	r := New()
-	err := r.Client.Set(r.Context, key, value, 0).Err()
 	if err != nil {
 		panic(err)
 	}
-	return value
+	return val, nil
 }
 
 func Increment(key string) int {
