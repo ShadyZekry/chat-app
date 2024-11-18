@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/ShadyZekry/chat-app/services"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -23,7 +24,9 @@ var chats []Chat
 func createChat(c echo.Context) error {
 	chat := new(Chat)
 	chat.Name = c.FormValue("name")
-	chat.Number = 5
+
+	token := c.Param("token")
+	chat.Number = services.Increment(token)
 
 	chats = append(chats, *chat)
 	return c.JSON(http.StatusCreated, chats)
