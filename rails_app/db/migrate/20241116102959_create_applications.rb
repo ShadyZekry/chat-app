@@ -1,6 +1,6 @@
 class CreateApplications < ActiveRecord::Migration[8.0]
   def change
-    create_table :chats, id:false do |t|
+    create_table :applications, id:false do |t|
       t.string :token, null: false, primary_key: true
       t.string :name
 
