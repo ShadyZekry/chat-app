@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/ShadyZekry/chat-app/services"
 	"github.com/labstack/echo/v4"
@@ -21,7 +22,16 @@ func CreateChat(c echo.Context) error {
 	chat.Name = c.FormValue("name")
 
 	token := c.Param("token")
-	chat.Number = services.Increment(token)
+	chat.Number = services.Increment(token, "chats")
+	services.Set(token, strconv.Itoa(chat.Number), "0")
+
+	publishChat(*chat)
+	return c.JSON(http.StatusCreated, chat)
+}
+
+func UpdateChat(c echo.Context) error {
+	chat := new(Chat)
+	chat.Name = c.FormValue("name")
 
 	publishChat(*chat)
 	return c.JSON(http.StatusCreated, chat)

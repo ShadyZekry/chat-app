@@ -30,9 +30,9 @@ func New() *RedisService {
 	return redisService
 }
 
-func Get(key string) (string, error) {
+func Get(key1 string, key2 string) (string, error) {
 	r := New()
-	val, err := r.Client.Get(r.Context, key).Result()
+	val, err := r.Client.HGet(r.Context, key1, key2).Result()
 	if err == redis.Nil {
 		return "", errors.New("key not found")
 	}
@@ -43,9 +43,17 @@ func Get(key string) (string, error) {
 	return val, nil
 }
 
-func Increment(key string) int {
+func Set(key1 string, key2 string, value string) {
 	r := New()
-	val, err := r.Client.Incr(r.Context, key).Result()
+	err := r.Client.HSet(r.Context, key1, key2, value).Err()
+	if err != nil {
+		panic(err)
+	}
+}
+
+func Increment(key1 string, key2 string) int {
+	r := New()
+	val, err := r.Client.HIncrBy(r.Context, key1, key2, 1).Result()
 	if err != nil {
 		panic(err)
 	}
