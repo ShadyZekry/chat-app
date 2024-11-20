@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"database/sql"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -8,13 +9,18 @@ import (
 	"strconv"
 
 	"github.com/ShadyZekry/chat-app/services"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/labstack/echo/v4"
 	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 type Chat struct {
-	Number int    `json:"number,omitempty"`
-	Name   string `json:"name,omitempty"`
+	Number           int    `json:"number,omitempty"`
+	Name             string `json:"name,omitempty"`
+	ApplicationToken string `json:"application_token,omitempty"`
+	CreatedAt        string `json:"created_at,omitempty"`
+	UpdatedAt        string `json:"updated_at,omitempty"`
+	MessagesCount    int    `json:"messages_count,omitempty"`
 }
 
 func CreateChat(c echo.Context) error {
@@ -27,6 +33,21 @@ func CreateChat(c echo.Context) error {
 
 	publishChat(*chat)
 	return c.JSON(http.StatusCreated, chat)
+}
+
+func GetChat(c echo.Context) error {
+	db := services.InitDB()
+	row := db.QueryRow("select * from chats where application_token=? AND number=?", c.Param("token"), c.Param("number"))
+
+	chat := new(Chat)
+	err := row.Scan(&chat.Number, &chat.Name, &chat.ApplicationToken, &chat.CreatedAt, &chat.UpdatedAt, &chat.MessagesCount)
+	if err == sql.ErrNoRows {
+		return c.JSON(http.StatusNotFound, map[string]string{"error": "Chat not found"})
+	} else {
+		failOnError(err, "Failed to get chat")
+	}
+
+	return c.JSON(http.StatusOK, chat)
 }
 
 func UpdateChat(c echo.Context) error {
