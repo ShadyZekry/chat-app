@@ -17,14 +17,10 @@ type Chat struct {
 }
 
 func CreateChat(c echo.Context) error {
-	token := c.Param("token")
-	if !services.ValidateToken(token) {
-		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid token"})
-	}
-
 	chat := new(Chat)
 	chat.Name = c.FormValue("name")
 
+	token := c.Param("token")
 	chat.Number = services.Increment(token)
 
 	publishChat(*chat)

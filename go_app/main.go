@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/ShadyZekry/chat-app/controllers"
+	"github.com/ShadyZekry/chat-app/middlewares"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -16,7 +17,7 @@ func main() {
 
 	api := echo.Group("/api/v1")
 
-	api.POST("/applications/:token/chats", controllers.CreateChat)
+	api.POST("/applications/:token/chats", controllers.CreateChat, middlewares.ValidateApplication())
 
 	httpPort := os.Getenv("PORT")
 	if httpPort == "" {
