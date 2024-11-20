@@ -8,7 +8,7 @@ class UpdateChatsCountsJob < ApplicationJob
       .count
 
     updates = recent_chats_counts.map do |application_token, chats_count|
-      "WHEN number = '#{application_token}' THEN #{chats_count}"
+      "WHEN token = '#{application_token}' THEN #{chats_count}"
     end.join(" ")
 
     ChatApplication.connection.execute(<<~SQL)
