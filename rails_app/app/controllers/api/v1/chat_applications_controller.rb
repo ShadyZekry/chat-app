@@ -12,6 +12,7 @@ class Api::V1::ChatApplicationsController < ApplicationController
     application = ChatApplication.new(application_params)
     application.token = SecureRandom.uuid
     if application.save
+      add_app_to_redis(application.token)
       render json: {token: application.token, name: application.name}, status: :created
     else
       render json: {error: application.errors.full_messages}, status: :unprocessable_entity
@@ -33,5 +34,10 @@ class Api::V1::ChatApplicationsController < ApplicationController
 
   def application_params
     params.permit(:name)
+  end
+
+  def add_app_to_redis(token)
+    redis = Redis.new(url: ENV['REDIS_URL'])
+    redis.hset(token, 'chats', '0')
   end
 end
