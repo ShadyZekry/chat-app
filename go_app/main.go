@@ -18,8 +18,23 @@ func main() {
 	api := echo.Group("/api/v1")
 
 	api.POST("/applications/:token/chats", controllers.CreateChat, middlewares.ValidateApplication)
-	api.GET("/applications/:token/chats/:number", controllers.GetChat, middlewares.ValidateApplication)
-	api.PUT("/applications/:token/chats/:number", controllers.UpdateChat, middlewares.ValidateApplication, middlewares.ValidateChat)
+	api.GET("/applications/:token/chats/:chat_number", controllers.GetChat, middlewares.ValidateApplication)
+	api.PUT("/applications/:token/chats/:chat_number", controllers.UpdateChat, middlewares.ValidateApplication, middlewares.ValidateChat)
+
+	api.POST("/applications/:token/chats/:chat_number/messages",
+		controllers.CreateMessage,
+		middlewares.ValidateApplication, middlewares.ValidateChat,
+	)
+	api.GET(
+		"/applications/:token/chats/:chat_number/messages/:message_number",
+		controllers.GetMessage,
+		middlewares.ValidateApplication, middlewares.ValidateChat,
+	)
+	api.PUT(
+		"/applications/:token/chats/:chat_number/messages/:message_number",
+		controllers.UpdateMessage,
+		middlewares.ValidateApplication, middlewares.ValidateChat, middlewares.ValidateMessage,
+	)
 
 	httpPort := os.Getenv("PORT")
 	if httpPort == "" {

@@ -31,7 +31,7 @@ services:
     command: ["sh", "-c", "go build -o /go/go_app && /go/go_app"]
     environment:
       GOCACHE: "/go/.cache"
-      DATABASE_URL: mysql://root:password@mysql:3306/go_db
+      DATABASE_URL: root:password@tcp(mysql:3306)/chat_app?parseTime=true
       REDIS_URL: redis://redis:6379/0
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
       ELASTICSEARCH_URL: http://elasticsearch:9200
