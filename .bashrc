@@ -1,5 +1,8 @@
 alias rails='docker-compose exec -it rails_app rails'
 alias rake='docker-compose exec -it rails_app rake'
+alias gem='docker-compose exec -it rails_app gem'
+alias bundle='docker-compose exec -it rails_app bundle'
+
 alias go='docker-compose exec -it go_app go'
 
 alias redis='docker-compose exec -it redis redis-cli'
