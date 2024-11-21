@@ -47,6 +47,20 @@ services:
     networks:
       - app_network
 
+  # RabbitMQ Consumer
+  consumer:
+    build:
+      context: ./rails_app
+      dockerfile: Dockerfile
+    user: "${WWWUSER}:${WWWGROUP}"
+    command: ruby consumer.rb
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./rails_app:/app
+    networks:
+      - app_network
+
   # RabbitMQ for messaging
   rabbitmq:
     image: rabbitmq:3-management
