@@ -40,28 +40,31 @@ last_insert_time = Time.now
 def flush_buffer(buffer)
   return if buffer.empty?
 
-  # ActiveRecord::Base.transaction do
-  #   ChatMessage.insert_all(buffer.map do |message|
-  #     {
-  #       chat_id: message['chat_id'],
-  #       message_id: message['message_id'],
-  #       content: message['content'],
-  #       created_at: Time.now,
-  #       updated_at: Time.now
-  #     }
-  #   end)
-  # end
+  ActiveRecord::Base.transaction do
+    buffer.each do |chat|
+      Chat.create!(
+        number: chat[:number],
+        name: chat[:name],
+        application_token: chat[:application_token],
+      )
+    end
+  end
 
   puts "Flushed #{buffer.size} messages to the database."
   buffer.clear
-  $last_insert_time = Time.now
 end
 
 # Periodic flush thread (handles time-based flush)
 Thread.new do
   loop do
     sleep 10 # Check every 10 seconds
-    if Time.now - $last_insert_time > TIMEOUT_THRESHOLD
+    if Time.now - last_insert_time > TIMEOUT_THRESHOLD 
+      last_insert_time = Time.now
+      if chats_buffer.empty?
+        puts "Buffer is empty, skipping flush."
+        next
+      end
+
       puts "Time threshold reached. Flushing buffer..."
       flush_buffer(chats_buffer)
     end
@@ -71,10 +74,11 @@ end
 # Subscribe to RabbitMQ
 queue.subscribe(block: true) do |delivery_info, _properties, body|
   puts "Received message: #{body}"
-  message = JSON.parse(body)
+  chat = JSON.parse(body)
   chats_buffer << {
-    number: message['number'],
-    name: message['name']
+    number: chat['number'],
+    name: chat['name'],
+    application_token: chat['application_token'],
   }
 
   # Check if buffer size threshold is met

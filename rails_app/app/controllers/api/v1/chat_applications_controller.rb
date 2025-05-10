@@ -23,7 +23,7 @@ class Api::V1::ChatApplicationsController < ApplicationController
     application = ChatApplication.find_by(token: params[:token])
     if application
       if application.update(application_params)
-        render json: application, status: :updated
+        render json: {token: application.token, name: application.name}, status: :ok
       else
         render json: {error: application.errors.full_messages}, status: :unprocessable_entity
       end

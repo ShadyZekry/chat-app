@@ -27,6 +27,7 @@ func CreateChat(c echo.Context) error {
 	token := c.Param("token")
 	chat.Number = services.Increment(token, "chats")
 	services.Set(token, strconv.Itoa(chat.Number), "0")
+	chat.ApplicationToken = token
 
 	services.Publish(*chat, "chats")
 	return c.JSON(http.StatusCreated, chat)
