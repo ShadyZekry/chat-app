@@ -3,6 +3,7 @@ package controllers
 import (
 	"database/sql"
 	"net/http"
+	"strconv"
 
 	"github.com/ShadyZekry/chat-app/services"
 	_ "github.com/go-sql-driver/mysql"
@@ -24,9 +25,12 @@ func CreateMessage(c echo.Context) error {
 
 	app_token := c.Param("token")
 	chat_number := c.Param("chat_number")
+	services.Set(app_token, chat_number, strconv.Itoa(message.Number))
 	message.Number = services.Increment(app_token, chat_number)
+	message.ApplicationToken = app_token
+	message.ChatNumber, _ = strconv.Atoi(chat_number)
 
-	services.Publish(*message, "message")
+	services.Publish(*message, "messages")
 	return c.JSON(http.StatusCreated, message)
 }
 
