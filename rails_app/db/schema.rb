@@ -28,13 +28,13 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_180204) do
     t.index ["application_token", "created_at"], name: "index_chats_on_application_token_and_created_at"
   end
 
-  create_table "messages", primary_key: "number", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "messages", primary_key: ["application_token", "chat_number", "number"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "number", null: false
     t.string "name"
     t.integer "chat_number", null: false
     t.string "application_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["application_token", "chat_number"], name: "fk_rails_98a3768c6c"
     t.index ["chat_number", "created_at"], name: "index_messages_on_chat_number_and_created_at"
   end
 
